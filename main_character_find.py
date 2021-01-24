@@ -31,7 +31,9 @@ def configure_message(response):
         response.update({"log": response['msg']})
         return response
 
-    if not response[cp.status]:
+    print(response)
+
+    if response[cp.status] == 'fail' and not response['error']:
         msg = "캐릭터를 찾지 못했습니다." + cp.add_admin_info(response[cp.process_time])
         response.update({"msg": msg, "log": msg})
         return response
@@ -62,7 +64,7 @@ async def send_message(result, channel):
         await channel.send(result['msg'], delete_after=30.0)
         return None
 
-    if not result[cp.status]:
+    if result[cp.status] == "fail":
         await channel.send(result['msg'], delete_after=30.0)
         return None
 

@@ -11,7 +11,6 @@ def get_special_function_information(message):
     url = "{}/special/get?apitoken={}".format(api.url, api.apiToken)
 
     response = cp.request_url(url, body, headers)
-    print(response)
 
     return response
 
