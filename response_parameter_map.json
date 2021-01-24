@@ -1,0 +1,80 @@
+{
+    "common": {
+        "process-time": "process-time",
+        "ban": "is-ban",
+        "admin": "admin",
+        "log-num": "query-num",
+        "status": "status",
+        "success": "success",
+        "fail": "fail",
+        "count": "count"
+    },
+    
+    "ox": {
+        "mode": "mode",
+        "problem-list": "problems",
+        "short-command-available": "short-command-available",
+        "insert-count": "insert-count",
+        "answer": "answer",
+        "question": "question"
+    },
+
+    "minigame": {
+        "time": "time",
+        "first-game": "first-game",
+        "second-game": "second-game",
+        "pvp-game": "pvp-game"
+    },
+
+    "boss": {
+        "boss-list": "bosses",
+        "name": "bossName",
+        "level": "level",
+        "time": "time",
+        "map": "map",
+        "comment": "comment",
+        "even-time-boss": "evenTimeBoss"
+    },
+
+    "custom-message": {
+        "message-list": "messages",
+        "command": "command",
+        "response": "response",
+        "is-for-one-server": "isForOneServer"
+    },
+
+    "crawling-service": {
+        "dm": "dm",
+        "not-registered": "not-registered",
+        "no-count": "no-have-count",
+        "not-opened-function": "not-opened-function",
+        "not-found": "not-found",
+        "character-list": "characters",
+        "guild-list": "guilds",
+        "guild-name": "guildName",
+        "nickname": "nickname",
+        "rank": "rank",
+        "trophy": "throphy",
+        "profile-url": "profileUrl"
+    },
+
+    "special-function": {
+        "information": "information",
+        "reason": "reason",
+        "dm": "dm",
+        "already-registered": "already-registered",
+        "force-banned": "force-banned",
+        "unknown": "unknown",
+        "duplicate-key": "duplicate-key",
+        "not-found": "not-found",
+        "not-registered": "not-registered"
+    },
+
+    "request": {
+        "query": "query", 
+        "call-value": "callValue",
+        "is-dm": "isDm",
+        "user-id": "userId",
+        "server-id": "serverId"
+    }
+}
