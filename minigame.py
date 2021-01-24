@@ -36,7 +36,7 @@ def configure_message(response):
     if response['error']:
         return response
 
-    embed = discord.Embed(title="{} 미니게임".format(response[time]), description="  ", color=0x00ff56)
+    embed = discord.Embed(title="{}분 미니게임".format(response[time].replace(':', "시 ", 1)), description="  ", color=0x00ff56)
     embed.add_field(name="첫 번째 미니게임", value=response[first_game], inline=False)
     embed.add_field(name="두 번째 미니게임", value=response[second_game], inline=False)
     embed.add_field(name="PvP", value=response[pvp_game], inline=False)

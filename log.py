@@ -21,11 +21,11 @@ def update_log(query_num, msg):
     requests.post(url, data=json.dumps(body), headers=configure_headers())
 
 
-def insert_log(message, response, query_type):
+def insert_log(message, response, call_value):
     body = {
         "query": message.content,
         "response": response,
-        "queryType": query_type,
+        "callValue": call_value,
         "isDm": True if str(type(message.channel)) == "<class 'discord.channel.DMChannel'>" else False,
         "userId": message.author.id,
         "serverId": None if str(type(message.channel)) == "<class 'discord.channel.DMChannel'>" else message.guild.id

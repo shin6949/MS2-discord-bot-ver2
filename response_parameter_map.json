@@ -23,7 +23,7 @@
         "time": "time",
         "first-game": "first-game",
         "second-game": "second-game",
-        "pvp-game": "pvp-game"
+        "pvp-game": "pvp-gameㄴ"
     },
 
     "boss": {
@@ -54,7 +54,7 @@
         "guild-name": "guildName",
         "nickname": "nickname",
         "rank": "rank",
-        "trophy": "throphy",
+        "trophy": "trophy",
         "profile-url": "profileUrl"
     },
 
@@ -67,7 +67,20 @@
         "unknown": "unknown",
         "duplicate-key": "duplicate-key",
         "not-found": "not-found",
-        "not-registered": "not-registered"
+        "not-registered": "not-registered",
+        "sf_num": "sfNum",
+        "server-id": "serverId",
+        "request-user-id": "requestUserId",
+        "comment": "comment",
+        "short-command": "shortCommand",
+        "trophy": "trophy",
+        "bad-user": "badUser",
+        "welcome": "welcome",
+        "call-unlimited": "callUnlimited",
+        "call-count": "callCount",
+        "available": "available",
+        "registered-time": "registeredTime",
+        "force-ban": "forceBan"
     },
 
     "request": {

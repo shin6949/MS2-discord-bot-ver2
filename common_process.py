@@ -14,6 +14,7 @@ count = response_parameter.get_param('common', 'count')
 admin = response_parameter.get_param('common', 'admin')
 process_time = response_parameter.get_param('common', 'process-time')
 log_num = response_parameter.get_param('common', 'log-num')
+status = response_parameter.get_param('common', 'status')
 
 
 def add_admin_info(process_time):

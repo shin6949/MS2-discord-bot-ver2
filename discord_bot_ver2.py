@@ -10,6 +10,7 @@ import log
 import api_server_info
 import minigame
 import main_character_find as main_character
+import special_function
 
 client = discord.Client()
 
@@ -42,6 +43,15 @@ async def on_message(message):
         result = ox.get_ox(message, message.content.partition(' ')[2].lstrip())
 
         await ox.common_ox_processing(result, channel)
+        return None
+
+    if message.content == '!ㅋ':
+        sf = special_function.get_special_function_information(message)
+        if special_function.judge_short_command(sf):
+            await channel.send("입력한 키워드가 없습니다!", delete_after=10.0)
+            log.insert_log(message, "입력한 키워드가 없습니다!", "ox")
+
+        return None
 
     if message.content.startswith('!ㅋ '):
         result = ox.get_ox_short(message, message.content.partition(' ')[2].lstrip())
