@@ -1,5 +1,6 @@
 import requests
 import json
+from discord.ext import commands
 
 # 별도 파일들
 import api_server_info
@@ -51,7 +52,7 @@ def get_ox(message, keyword):
     headers, body = configure_default_data(message)
 
     url = "{}/ox/search?apitoken={}&keyword={}".format(api_server_info.url, api_server_info.apiToken, keyword)
-    response, result = request_url(url, headers, body)
+    response, result = request_url(url, body, headers)
 
     return configure_msg(response, result, keyword)
 
@@ -59,20 +60,20 @@ def get_ox(message, keyword):
 def get_ox_short(message, keyword):
     headers, body = configure_default_data(message)
 
-    url = "{}/ox/short?apitoken={}&keyword={}".format(api_server_info.url, api_server_info.apiToken, keyword)
-    response, result = request_url(url, headers, body)
+    url = "{}/ox/search/short?apitoken={}&keyword={}".format(api_server_info.url, api_server_info.apiToken, keyword)
+    response, result = request_url(url, body, headers)
 
     return configure_msg(response, result, keyword)
 
 
-def request_url(url, headers, body):
+def request_url(url, body, headers):
     r = requests.get(url, data=json.dumps(body), headers=headers)
     response = json.loads(r.text)
 
     error_message = cp.judge_status_code(r.status_code)
     if error_message is None:
         result = {'error': False, cp.ban: response[cp.ban],
-                  cp.admin: response[cp.admin], log: response[cp.log_num]}
+                  cp.admin: response[cp.admin], cp.log_num: response[cp.log_num]}
     else:
         result = {'error': True, 'msg': error_message}
 
@@ -80,15 +81,7 @@ def request_url(url, headers, body):
 
 
 def configure_default_data(message):
-    headers = cp.return_headers()
-
-    body = {
-        cp.query: message.content,
-        cp.call_value: "ox",
-        cp.is_dm: True if str(type(message.channel)) == "<class 'discord.channel.DMChannel'>" else False,
-        cp.user_id: message.author.id,
-        cp.server_id: None if str(type(message.channel)) == "<class 'discord.channel.DMChannel'>" else message.guild.id
-    }
+    headers, body = cp.configure_request(message, "ox")
 
     return headers, body
 

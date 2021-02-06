@@ -1,4 +1,9 @@
 {
+    "commands" : {
+        "ox": "ox",
+        "minigame": "mini"
+    },
+
     "common": {
         "process-time": "process-time",
         "ban": "is-ban",
@@ -55,7 +60,8 @@
         "nickname": "nickname",
         "rank": "rank",
         "trophy": "trophy",
-        "profile-url": "profileUrl"
+        "profile-url": "profileUrl",
+        "master": "master"
     },
 
     "special-function": {

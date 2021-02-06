@@ -31,8 +31,6 @@ def configure_message(response):
         response.update({"log": response['msg']})
         return response
 
-    print(response)
-
     if response[cp.status] == 'fail' and not response['error']:
         msg = "캐릭터를 찾지 못했습니다." + cp.add_admin_info(response[cp.process_time])
         response.update({"msg": msg, "log": msg})
