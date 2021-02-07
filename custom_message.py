@@ -57,6 +57,9 @@ def get_custom_message(message):
 
 
 async def send_msg(channel, result):
+    if result['count'] == 0:
+        return None
+
     if result['error']:
         await channel.send(content=result['msg'], delete_after=30.0)
         return None
