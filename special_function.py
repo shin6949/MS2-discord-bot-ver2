@@ -4,6 +4,9 @@ import response_parameter as rp
 
 request_mode = ""
 service_name = 'special-function'
+information_key = rp.get_param(service_name, "information")
+short_command_key = rp.get_param(service_name, "short-command")
+trophy_key = rp.get_param(service_name, 'trophy')
 
 
 def get_special_function_information(message):
@@ -16,5 +19,9 @@ def get_special_function_information(message):
 
 
 def judge_short_command(response):
-    return True if response[rp.get_param(service_name, 'information')][rp.get_param(service_name, 'short-command')] else False
+    return True if response[information_key][short_command_key] else False
+
+
+def judge_trophy(response):
+    return True if response[information_key][trophy_key] else False
 

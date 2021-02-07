@@ -1,9 +1,12 @@
+from discord import Colour
 import api_server_info as api
 import discord
 import common_process as cp
 import urllib.request
 import log
 import response_parameter
+import image_processing
+
 
 # 상수들 정의
 request_mode = 'trophy'
@@ -37,8 +40,12 @@ def configure_message(response):
         return response
 
     character = response[character_list][0]
+    urllib.request.urlretrieve(character[profile_url], character[nickname] + ".png")
 
-    embed = discord.Embed(title="대표 캐릭터 검색 결과", description="  ", color=0x00ff56)
+    r, g, b = image_processing.get_average(character[nickname])
+    line_color = Colour.from_rgb(r, g, b)
+
+    embed = discord.Embed(title="대표 캐릭터 검색 결과", description="  ", color=line_color)
     embed.add_field(name="닉네임", value=character[nickname], inline=True)
     embed.add_field(name="순위", value="{}위".format(format(int(character[rank]), ",")), inline=True)
     embed.add_field(name="트로피", value="{}개".format(format(int(character[trophy]), ",")), inline=False)
@@ -59,24 +66,19 @@ def configure_message(response):
 
 async def send_message(result, channel):
     if result['error']:
-        await channel.send(result['msg'], delete_after=30.0)
+        await channel.send(content=result['msg'], delete_after=30.0)
         return None
 
-    if result[cp.status] == "fail":
-        await channel.send(result['msg'], delete_after=30.0)
-        return None
-
-    if result[cp.ban]:
+    if result[cp.status] == "fail" or result[cp.ban]:
         return None
 
     character = result[character_list][0]
-    urllib.request.urlretrieve(character[profile_url], character[nickname] + ".png")
     file = discord.File(character[nickname] + ".png", filename="profileimage.png")
 
     if result[cp.admin]:
-        await channel.send(result['msg'], embed=result['embed'], file=file)
+        await channel.send(content=result['msg'], embed=result['embed'], file=file)
     else:
-        await channel.send(embed=result['embed'], file=file, delete_after=60.0)
+        await channel.send(content="", embed=result['embed'], file=file, delete_after=60.0)
 
     log.update_log(result[cp.log_num], result['log'])
     return None

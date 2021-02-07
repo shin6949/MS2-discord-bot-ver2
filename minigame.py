@@ -54,18 +54,25 @@ def configure_message(response):
     return response
 
 
-async def common_mini_processing(result, channel):
+async def common_mini_processing(result, chat):
+    """
+    미니 게임 데이터 전송을 위한 함수
+
+    :param result: API Server에서 갖고 온 Json (Dict)
+    :param chat: 수정 할 메시지
+    :return: None
+    """
     if result['error']:
-        await channel.send(result['msg'], delete_after=30.0)
+        await chat.edit(content=result['msg'], delete_after=30.0)
         return None
 
     if result[cp.ban]:
         return None
 
     if result[cp.admin]:
-        await channel.send(result['msg'], embed=result['embed'])
+        await chat.edit(content=result['msg'], embed=result['embed'])
     else:
-        await channel.send(result['msg'], embed=result['embed'], delete_after=60.0)
+        await chat.edit(content=result['msg'], embed=result['embed'], delete_after=60.0)
 
     log.update_log(result[cp.log_num], result['log'])
     return None

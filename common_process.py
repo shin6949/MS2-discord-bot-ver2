@@ -44,7 +44,7 @@ def request_url(url, body, headers):
     return response
 
 
-def configure_request(message, mode):
+def configure_request(ctx, mode):
     headers = {
         'Accept': 'application/json',
         'Accept-Encoding': 'gzip, deflate, br',
@@ -52,11 +52,11 @@ def configure_request(message, mode):
     }
 
     body = {
-        query: message.content,
+        query: ctx.message.content,
         call_value: mode,
-        is_dm: True if str(type(message.channel)) == "<class 'discord.channel.DMChannel'>" else False,
-        user_id: message.author.id,
-        server_id: None if str(type(message.channel)) == "<class 'discord.channel.DMChannel'>" else message.guild.id
+        is_dm: True if str(type(ctx.channel)) == "<class 'discord.channel.DMChannel'>" else False,
+        user_id: ctx.author.id,
+        server_id: None if str(type(ctx.channel)) == "<class 'discord.channel.DMChannel'>" else ctx.guild.id
     }
 
     return headers, body
