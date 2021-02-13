@@ -12,6 +12,7 @@ import guild_information as guild
 import character_information as character
 import custom_message as custom
 import boss
+import legion_war as legion
 
 prefix = "!"
 bot = commands.Bot(command_prefix=prefix)
@@ -137,6 +138,20 @@ async def get_bosses_next(ctx):
     chat = await ctx.channel.send(first_message)
     result = boss.get_bosses_next(ctx)
     await boss.send_message(result, chat)
+
+
+@bot.command(name="군단")
+async def get_legion_war_soon(ctx):
+    chat = await ctx.channel.send(first_message)
+    result = legion.get_legion_war_soon(ctx)
+    await legion.send_message(result, chat)
+
+
+@bot.command(name="다음군단")
+async def get_legion_war_soon(ctx):
+    chat = await ctx.channel.send(first_message)
+    result = legion.get_legion_war_next(ctx)
+    await legion.send_message(result, chat)
 
 
 @bot.command(name="길트")
