@@ -75,7 +75,7 @@ async def send_msg(channel, result):
         msg += cp.add_admin_info(result['process-time'])
         await channel.send(content=msg)
     else:
-        await channel.send(content=result['msg'], delete_after=60.0)
+        await channel.send(content=msg, delete_after=60.0)
 
     log.update_log(result[cp.log_num], None if result[cp.ban] else msg)
     return None
