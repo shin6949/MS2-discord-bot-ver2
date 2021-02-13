@@ -124,6 +124,7 @@ async def get_bosses_soon_and_search(ctx):
         return None
     else:
         try:
+            int(keyword)
             result = boss.get_bosses_by_time(ctx, keyword)
             await boss.send_message(result, chat)
         except ValueError as ve:
