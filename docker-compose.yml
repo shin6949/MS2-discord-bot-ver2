@@ -2,6 +2,6 @@ version: '3.1'
 services:
   bot:
     image: discordbot:latest
-    container_name: bot
+    container_name: ms2_discord_bot
     environment:
       - test.env
