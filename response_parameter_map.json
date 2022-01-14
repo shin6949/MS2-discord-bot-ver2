@@ -89,6 +89,13 @@
         "force-ban": "forceBan"
     },
 
+    "legion": {
+        "legion-war-list": "legion-wars",
+        "id": "id",
+        "name": "name",
+        "even-time": "evenTime"
+    },
+
     "request": {
         "query": "query", 
         "call-value": "callValue",

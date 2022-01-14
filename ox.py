@@ -1,6 +1,5 @@
 import requests
 import json
-from discord.ext import commands
 
 # 별도 파일들
 import api_server_info
@@ -86,18 +85,18 @@ def configure_default_data(message):
     return headers, body
 
 
-async def common_ox_processing(result, channel):
+async def common_ox_processing(chat, result):
     if result['error']:
-        await channel.send(result['msg'], delete_after=30.0)
+        await chat.edit(content=result['msg'], delete_after=30.0)
         return None
 
     if result[cp.ban]:
         return None
 
     if result[cp.admin]:
-        await channel.send(result['msg'])
+        await chat.edit(content=result['msg'])
     else:
-        await channel.send(result['msg'], delete_after=60.0)
+        await chat.edit(content=result['msg'], delete_after=60.0)
 
     log.update_log(result[cp.log_num], None if result[cp.ban] else result['msg'])
     return None
