@@ -1,6 +1,9 @@
-FROM python:3.6.14-buster
-RUN apt-get update && apt-get upgrade -y && apt-get install libgl1-mesa-glx -y
-WORKDIR /app
+FROM python:3.8.12-slim-buster
+LABEL org.opencontainers.image.source='https://github.com/shin6949/MS2-discord-bot-ver2'
 COPY . /app
+
+WORKDIR /app
+
 RUN pip3 install -r requirements.txt
-CMD python3 -u discord_bot_ver2.py
+
+ENTRYPOINT ["python", "discord_bot_ver2.py"]
