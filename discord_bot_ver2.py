@@ -26,7 +26,7 @@ async def on_ready():
 
     :return: None
     """
-    game = discord.Game("!설명서, !ox로 검색")
+    game = discord.Game("/로 명령")
     await bot.change_presence(status=discord.Status.online, activity=game)
     print("READY")
 
